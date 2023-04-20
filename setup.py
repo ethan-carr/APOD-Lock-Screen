@@ -3,6 +3,10 @@ import subprocess
 import shutil
 import sys
 
+# Install dependencies
+subprocess.check_call(["pip3", "install", "requests"])
+subprocess.check_call(["pip3", "install", "beautifulsoup4"])
+
 # File directories and copying params
 src_dir = '~\\Documents'
 app_name = "APOD-Lockscreen"
@@ -11,7 +15,9 @@ main_file = "paster.py"
 
 # Windows Tasks Scheduler params
 freq = "daily"
-time = "06:00"
+time = "05:58"
+time2 = "06:00"
+img_name = "img.jpg"
 
 # Get the path to the Documents folder
 docs_path = os.path.expanduser(src_dir)
@@ -35,9 +41,17 @@ bat_path = os.path.join(app_path, 'task.bat')
 with open(bat_path, 'w') as f:
     f.write('"' + str(python_path) + '" "' + main_path + '"\nexit')
 
+# Creates a batch file for changing the background (has to be separate with admin priv)
+img_path = os.path.join(app_path, img_name)
+changer_path = os.path.join(app_path, 'background_changer.bat')
+with open(changer_path, 'w') as f:
+    f.write('set image_path="'+img_path+'"\n')
+    f.write('reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PersonalizationCSP" /v LockScreenImagePath /t REG_SZ /d %image_path% /f\n')
+    f.write('reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PersonalizationCSP" /v LockScreenImageStatus /t REG_DWORD /d 1 /f')
+
 # Set the command to create the scheduled task
 command = 'schtasks /create /tn "' +str(app_name)+ '" /tr "\''+str(bat_path)+'\' " /sc '+str(freq)+' /st '+str(time)+' '
-print(command)
-
-# Run the command in the Windows command prompt
 subprocess.call(command, shell=True)
+
+command2 = 'schtasks /create /tn "' +str(app_name) + '_bgchanger' + '" /tr "\''+str(changer_path)+'\' " /sc '+str(freq)+' /st '+str(time2)+''
+subprocess.call(command2, shell=True)
