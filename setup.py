@@ -10,8 +10,8 @@ subprocess.check_call(["pip3", "install", "beautifulsoup4"])
 # File directories and copying params
 src_dir = '~\\Documents'
 app_name = "APOD-Lockscreen"
-copied_files = ["paster.py", "setup.py"]
-main_file = "paster.py"
+copied_files = ["APOD.py", "setup.py"]
+main_file = "APOD.py"
 
 # Windows Tasks Scheduler params
 freq = "daily"
