@@ -50,8 +50,12 @@ with open(changer_path, 'w') as f:
     f.write('reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PersonalizationCSP" /v LockScreenImageStatus /t REG_DWORD /d 1 /f')
 
 # Set the command to create the scheduled task
-command = 'schtasks /create /tn "' +str(app_name)+ '" /tr "\''+str(bat_path)+'\' " /sc '+str(freq)+' /st '+str(time)+' '
-subprocess.call(command, shell=True)
+create_task = 'schtasks /create /tn "' +str(app_name)+ '" /tr "\''+str(bat_path)+'\' " /sc '+str(freq)+' /st '+str(time)+' '
+subprocess.call(create_task, shell=True)
 
-command2 = 'schtasks /create /tn "' +str(app_name) + '_bgchanger' + '" /tr "\''+str(changer_path)+'\' " /sc '+str(freq)+' /st '+str(time2)+''
-subprocess.call(command2, shell=True)
+# Not needed to have _bgchanger as task, run once to set the path until changed
+#command2 = 'schtasks /create /tn "' +str(app_name) + '_bgchanger' + '" /tr "\''+str(changer_path)+'\' " /sc '+str(freq)+' /st '+str(time2)+''
+#subprocess.call(command2, shell=True)
+
+run_task = 'schtasks /run /tn "'+str(app_name)+'"'
+subprocess.call(run_task, shell=True)
