@@ -1,0 +1,16 @@
+Instructions for using the APOD-Lockscreen program:
+
+1. Ensure that Python is installed on your computer. You can download the latest version of Python from the official website: https://www.python.org/downloads/
+    Note: This version is made for Python3.9
+
+2. Double-click on the setup.py file to run it.
+    Note: Running the setup.py file will install the necessary dependencies for the program to run.
+
+3. Once the setup is complete, navigate to the program folder (default in Documents/APOD-Lockscreen) and locate the background_changer.bat file.
+
+4. Right-click on the apod_lockscreen.bat file and select "Run as administrator" from the context menu.
+    Note: Running the batch script as administrator is required in order for the program to be able to change the lock screen image.
+
+5. The program will now run and automatically change your lock screen image to NASA's Astronomy Picture of the Day daily. No other interaction is required.
+
+To stop and remove the program simply delete the "APOD-Lockscreen" folder in Documents and then remove the "APOD-Lockscreen" task in Task Scheduler.
