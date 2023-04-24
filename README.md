@@ -37,5 +37,6 @@ While this works as is, will not be heavily updating. Would like to add GUI to m
 ### Contact me!
 
 GitHub: @ethan-carr
+
 Email: ethan@ethancarr.dev
 
