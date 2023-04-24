@@ -26,6 +26,7 @@ Should all run on its own as scheduled, no additional interaction needed after i
 ## Updates
 
 - 04/21/2023: Removed the background changer task, as it does not need to run more than once. Updated frequency to every couple hours, daily only works if computer is logged in at the scheduled run time. Removed annoying steps of setting up `schtask` from the Windows GUI. Task made to run minimized now.
+- 04/24/2023: Adding additional logging for tracing back errors, also updated the batch script to fix small error, functioning as expected now.
 
 ## Whats next
 
